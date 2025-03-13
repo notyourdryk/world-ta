@@ -2,7 +2,7 @@
 import Xmark from "@/components/icons/Xmark.vue";
 
 defineEmits(["close", "ok", "cancel"]);
-const { open = false, body } = defineProps(["open", "body"]);
+const { open = false } = defineProps(["open"]);
 </script>
 <template>
   <Teleport to="#app">

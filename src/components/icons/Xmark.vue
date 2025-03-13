@@ -1,8 +1,5 @@
 <script setup lang="ts">
-const { color = "#000000", size } = defineProps({
-  size: Number,
-  color: String,
-})
+const { color = "#000000" } = defineProps(["color"]);
 </script>
 <template>
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

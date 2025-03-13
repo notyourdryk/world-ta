@@ -1,8 +1,5 @@
 <script setup lang="ts">
-const { size, color = "#000000" } = defineProps({
-  size: String,
-  color: String,
-})
+const { color = "#000000" } = defineProps(["color"])
 </script>
 
 <template>
