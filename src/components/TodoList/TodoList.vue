@@ -6,15 +6,16 @@ import TodoItem from "@/components/TodoItem/TodoItem.vue";
 import { ref } from "vue";
 import AddItemButton from "@/components/AddItemButton.vue";
 import { itemAdded, itemMoved } from "@/components/Alert/alerts.ts";
+import { type TodoItem as TodoItemType } from "@/types.ts";
 
 defineEmits(["delete-item"]);
 const props = defineProps(["list"]);
 const { title, items, color, id } = props.list;
-const editItemId = ref(null);
-const setEditItemId = (itemId) => {
+const editItemId = ref<TodoItemType["id"] | null>(null);
+const setEditItemId = (itemId: TodoItemType["id"] | null) => {
   editItemId.value = itemId;
 };
-const tempItem = ref(null);
+const tempItem = ref<TodoItemType | null>(null);
 
 const removeAdding = () => tempItem.value = null;
 const addTodoItem = () => {
@@ -23,7 +24,10 @@ const addTodoItem = () => {
     description: "",
   };
 };
-const createItem = (description) => {
+const createItem = (description: TodoItemType["description"]) => {
+  if (!tempItem.value)
+    return;
+
   items.push({
     ...tempItem.value,
     description
@@ -31,12 +35,12 @@ const createItem = (description) => {
   itemAdded(title, description);
   tempItem.value = null;
 }
-const saveChanges = (value) => {
-  const item = items.find(({ id }) => id === editItemId.value);
+const saveChanges = (value: TodoItemType["description"]) => {
+  const item = items.find(({ id }: TodoItemType) => id === editItemId.value);
   item.description = value;
   setEditItemId(null);
 };
-const onChange = (ev) => {
+const onChange = (ev: any) => {
   if (ev.added) {
     itemMoved(title, ev.added.element.description);
   }

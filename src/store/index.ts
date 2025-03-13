@@ -1,1 +1,1 @@
-export { useStore } from "./state";
+export { store } from "./state";

@@ -9,72 +9,17 @@
  * - responsive ui
  */
 import { ref } from "vue";
-import TodoList from "@/components/TodoList/TodoList.vue";
-import Modal from "@/components/Modal.vue";
-import Alert from "@/components/Alert/Alert.vue";
+import { TodoList, Modal, Alert } from "@/components";
 import { itemDeleted } from "@/components/Alert/alerts.ts";
+import type { TodoItem, TodoList as TodoListType } from "@/types.ts";
+import { store } from "@/store";
 
-const todos = ref([
-  {
-    id: 0,
-    title: "На согласование",
-    color: "#FF99E9",
-    items: [
-      { id: 0, description: "Новая задача" },
-      { id: 1, description: "Описать правила поведения интерфейса" },
-      {
-        id: 2,
-        description:
-          "Создание задачи с  очень длинным текстом описания в несколько строк, заполняющую примерно половину всей высоты столбца",
-      },
-      {
-        id: 3,
-        description:
-          "Создание задачи с  очень длинным текстом описания в несколько строк, заполняющую примерно половину всей высоты столбца",
-      },
-      {
-        id: 4,
-        description:
-          "Создание задачи с  очень длинным текстом описания в несколько строк, заполняющую примерно половину всей высоты столбца",
-      },
-    ],
-  },
-  {
-    id: 1,
-    title: "Новые",
-    color: "#66B8FF",
-    items: [
-      {
-        id: 5,
-        description:
-          "Создание задачи с  очень длинным текстом описания в несколько строк, заполняющую примерно половину всей высоты столбца",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "В процессе",
-    color: "#FFD466",
-    items: [],
-  },
-  {
-    id: 3,
-    title: "Готово",
-    color: "#53C666",
-    items: [],
-  },
-  {
-    id: 4,
-    title: "Доработать",
-    color: "#F76E85",
-    items: [],
-  },
-]);
+const todos = store;
 const isModalOpen = ref(false);
 const modalBody = ref("Example");
-const itemForDelete = ref(null);
-const listForUpdate = ref(null);
-const showModal = (listId, item) => {
+const itemForDelete = ref<TodoItem["id"] | null>(null);
+const listForUpdate = ref<TodoListType["id"] | null>(null);
+const showModal = (listId: TodoListType["id"], item: TodoItem) => {
   isModalOpen.value = true;
   modalBody.value = item.description;
   itemForDelete.value = item.id;
@@ -82,12 +27,16 @@ const showModal = (listId, item) => {
 };
 const deleteItem = () => {
   const list = todos.value.find(({ id }) => id === listForUpdate.value);
+  if (!list)
+    throw new Error(`List with id: ${listForUpdate.value} not found`);
   const itemIndex = list.items.findIndex(({ id }) => id === itemForDelete.value);
+  if (itemIndex < 0)
+    throw new Error(`item with id: ${itemForDelete.value} not found`);
   itemDeleted(list.items[itemIndex].description);
   list.items.splice(itemIndex, 1);
   hideModal();
-}
-const hideModal = () => isModalOpen.value = false;
+};
+const hideModal = () => (isModalOpen.value = false);
 </script>
 
 <template>
@@ -95,5 +44,5 @@ const hideModal = () => isModalOpen.value = false;
   <Modal :open="isModalOpen" @close="hideModal" @ok="deleteItem" @cancel="hideModal">
     {{ modalBody }}
   </Modal>
-  <Alert message="" type=""/>
+  <Alert message="" type="" />
 </template>

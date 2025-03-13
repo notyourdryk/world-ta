@@ -21,7 +21,7 @@ defineEmits(["edited", "click", "change", "delete", "edit"]);
     />
     <div v-if="!edit" class="todo-card">
       <div class="todo-card__description">{{ description }}</div>
-      <Tippy style="height: 20px" transition="0" placement="right-start" interactive :append-to="(ref) => ref.parentNode.parentNode" >
+      <Tippy style="height: 20px" transition="0" placement="right-start" interactive :append-to="(ref) => ref.parentNode?.parentNode as Element" >
         <Elipsis color="#86949E" class="todo-card__details" />
         <template #content>
           <Menu>

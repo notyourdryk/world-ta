@@ -13,8 +13,8 @@ const { description } = defineProps({
 const value = ref(description);
 const inputRef = useTemplateRef("textarea")
 defineEmits(["save", "cancel"]);
-onMounted(() => inputRef.value.focus());
-onMounted(() => autosize(inputRef.value));
+onMounted(() => inputRef.value && inputRef.value.focus());
+onMounted(() => inputRef.value && autosize(inputRef.value));
 </script>
 
 <template>
