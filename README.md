@@ -1,3 +1,5 @@
+[Demo](https://notyourdryk.github.io/world-ta/)
+
 ## Project Setup
 
 ```sh
