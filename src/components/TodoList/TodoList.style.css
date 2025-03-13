@@ -1,0 +1,18 @@
+
+.todo-list__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 177px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.todo-list {
+  margin: 0;
+  padding: 8px;
+  gap: 8px;
+  background: #f7f7f7;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: 100%;
+}

@@ -1,0 +1,10 @@
+.todo-column__title {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 14px;
+  font-weight: 584;
+  text-align: center;
+  background: #ff99e9;
+  height: 32px;
+  line-height: 32px;
+}
