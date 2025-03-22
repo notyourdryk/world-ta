@@ -1,3 +1,10 @@
+# Todo list using Vue
+
+**libs**
+ - Vue
+ - i18n
+ - Bootstrap
+
 ## Project Setup
 
 ```sh

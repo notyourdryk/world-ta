@@ -48,10 +48,10 @@ const onChange = (ev: any) => {
 </script>
 
 <template>
-  <div class="todo-list__wrapper">
+  <div class="todo-list__wrapper h-100 d-flex flex-column">
     <TodoColumnTitle :color="color" :title="title" />
-    <div class="todo-list">
-      <draggable :list="items" group="todos" item-key="id" @change="onChange">
+    <div class="d-flex flex-column border px-2 pt-2 overflow-y-scroll">
+      <draggable class="d-flex flex-column gap-1" :list="items" group="todos" item-key="id" @change="onChange">
         <template #item="{ element }">
           <TodoItem
             :edit="editItemId === element.id"
@@ -68,7 +68,7 @@ const onChange = (ev: any) => {
                 :description="''"
                 @edited="removeAdding"
                 @change="createItem" />
-      <div v-if="!editItemId" class="todo-list__item">
+      <div v-if="!editItemId" class="todo-list__item mb-2">
         <AddItemButton @click="addTodoItem" />
       </div>
     </div>
