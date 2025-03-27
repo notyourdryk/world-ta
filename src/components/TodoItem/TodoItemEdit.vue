@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import "./TodoItem.style.css";
-import Xmark from "@/components/icons/Xmark.vue";
-import Check from "@/components/icons/Check.vue";
+import { Xmark, Check } from "@/components/icons";
 import { onMounted, ref, useTemplateRef } from "vue";
 import autosize from "autosize";
 
 const { description } = defineProps({
   description: String,
   cancel: Function,
-  save: Function
+  save: Function,
 });
 const value = ref(description);
-const inputRef = useTemplateRef("textarea")
+const inputRef = useTemplateRef("textarea");
 defineEmits(["save", "cancel"]);
 onMounted(() => inputRef.value && inputRef.value.focus());
 onMounted(() => inputRef.value && autosize(inputRef.value));
@@ -21,8 +20,8 @@ onMounted(() => inputRef.value && autosize(inputRef.value));
   <div class="todo-card todo-card--edit">
     <textarea ref="textarea" v-model="value" class="todo-card__textarea"></textarea>
     <div class="todo-card__buttons">
-      <Xmark color="#F53D5C" @click="$emit('cancel')"/>
-      <Check color="#22C33D" @click="$emit('save', value)"/>
+      <Xmark color="#F53D5C" @click="$emit('cancel')" />
+      <Check color="#22C33D" @click="$emit('save', value)" />
     </div>
   </div>
 </template>
@@ -34,5 +33,6 @@ onMounted(() => inputRef.value && autosize(inputRef.value));
   min-height: 2em;
   resize: none;
   height: 100%;
+  width: 100%;
 }
 </style>

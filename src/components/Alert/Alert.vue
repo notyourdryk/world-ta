@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import RoundCheck from "@/components/icons/RoundCheck.vue";
-import Xmark from "@/components/icons/Xmark.vue";
+import { Xmark, RoundCheck } from "@/components/icons";
 import { alertStore, deleteAlert } from "@/components/Alert/store.ts";
 
 const stack = alertStore;
@@ -34,7 +33,7 @@ const stack = alertStore;
 .alert {
   padding: 16px;
   box-sizing: border-box;
-  border-left: 8px solid #22C33D;
+  border-left: 8px solid #22c33d;
   display: flex;
   background: white;
   gap: 16px;

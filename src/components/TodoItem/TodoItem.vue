@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import "./TodoItem.style.css";
 import TodoCardEdit from "@/components/TodoItem/TodoItemEdit.vue";
-import Elipsis from "@/components/icons/Elipsis.vue";
 import MenuItem from "@/components/MenuItem.vue";
 import Menu from "@/components/Menu.vue";
-import Edit from "@/components/icons/Edit.vue";
-import Trash from "@/components/icons/Trash.vue";
 import { Tippy } from "vue-tippy";
+import { Trash, Edit, Elipsis } from "@/components/icons";
 
 defineProps(["description", "edit"]);
 defineEmits(["edited", "click", "change", "delete", "edit"]);
@@ -21,12 +19,18 @@ defineEmits(["edited", "click", "change", "delete", "edit"]);
     />
     <div v-if="!edit" class="todo-card">
       <div class="todo-card__description">{{ description }}</div>
-      <Tippy style="height: 20px" transition="0" placement="right-start" interactive :append-to="(ref) => ref.parentNode?.parentNode as Element" >
+      <Tippy
+        style="height: 20px"
+        transition="0"
+        placement="right-start"
+        interactive
+        :append-to="(ref) => ref.parentNode?.parentNode as Element"
+      >
         <Elipsis color="#86949E" class="todo-card__details" />
         <template #content>
           <Menu>
             <MenuItem @click="$emit('edit')">
-              <Edit color="#86949E"/>
+              <Edit color="#86949E" />
               Редактировать
             </MenuItem>
             <MenuItem @click="$emit('delete')">

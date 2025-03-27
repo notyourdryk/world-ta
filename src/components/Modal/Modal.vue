@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Xmark from "@/components/icons/Xmark.vue";
+import { Xmark } from "@/components/icons";
 import "./Modal.style.css";
 
 defineEmits(["close", "ok", "cancel"]);
@@ -12,7 +12,7 @@ const { open = false } = defineProps(["open"]);
         <div class="modal__header">
           Удалить задачу?
           <div class="modal__close-button">
-            <Xmark color="#86949E" @click.stop="$emit('close')"/>
+            <Xmark color="#86949E" @click.stop="$emit('close')" />
           </div>
         </div>
         <div class="modal__body">

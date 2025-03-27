@@ -1,4 +1,3 @@
-import { defineStore } from "pinia";
 import type { TodoList } from "@/types.ts";
 import { type Ref, ref } from "vue";
 

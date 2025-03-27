@@ -7,7 +7,7 @@ import { store } from "@/store";
 
 const todos = store;
 const isModalOpen = ref(false);
-const modalBody = ref("Example");
+const modalBody = ref("");
 const itemForDelete = ref<TodoItem["id"] | null>(null);
 const listForUpdate = ref<TodoListType["id"] | null>(null);
 const showModal = (listId: TodoListType["id"], item: TodoItem) => {
@@ -16,6 +16,7 @@ const showModal = (listId: TodoListType["id"], item: TodoItem) => {
   itemForDelete.value = item.id;
   listForUpdate.value = listId;
 };
+
 const deleteItem = () => {
   const list = todos.value.find(({ id }) => id === listForUpdate.value);
   if (!list) throw new Error(`List with id: ${listForUpdate.value} not found`);
