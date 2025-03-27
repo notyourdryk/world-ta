@@ -1,9 +1,4 @@
-# Todo list using Vue
-
-**libs**
- - Vue
- - i18n
- - Bootstrap
+[Demo](https://notyourdryk.github.io/world-ta/)
 
 ## Project Setup
 
